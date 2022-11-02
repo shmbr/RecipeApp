@@ -8,6 +8,8 @@
 import UIKit
 
 class CategoryVC: UIViewController {
+    
+
     @IBOutlet weak var categoryCollectionView: UICollectionView!
     
     override func viewDidLoad() {
@@ -42,8 +44,8 @@ extension CategoryVC: UICollectionViewDelegate{
         print(categoriesData[indexPath.row].title)
         performSegue(withIdentifier: "toCategoriesList", sender: nil)
         
-//        let vc = storyboard?.instantiateViewController(withIdentifier: "DetailsViewController") as? DetailsViewController
-//        vc?.row = indexPath.row
-//        self.navigationController?.pushViewController(vc!, animated: true)
+        //        let vc = storyboard?.instantiateViewController(withIdentifier: "DetailsViewController") as? DetailsViewController
+        //        vc?.row = indexPath.row
+        //        self.navigationController?.pushViewController(vc!, animated: true)
     }
 }

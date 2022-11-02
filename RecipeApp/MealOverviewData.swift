@@ -17,7 +17,5 @@ struct Meal: Codable {
     let strArea: String
     let strMealThumb: String
     let strInstructions: String
-    
     //let strIngredient1: String
-    
 }
