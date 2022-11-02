@@ -75,7 +75,7 @@
         <!--Categories-->
         <scene sceneID="fJV-o8-sIl">
             <objects>
-                <viewController id="Eyy-Zc-flw" sceneMemberID="viewController">
+                <viewController id="Eyy-Zc-flw" customClass="CategoryVC" customModule="RecipeApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="2JF-gb-ZxX">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -90,21 +90,48 @@
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="De1-Ph-j7d">
                                 <rect key="frame" x="47" y="159" width="320" height="579"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="sdF-8S-pA0">
-                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="itemSize" width="95" height="124"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="esD-aQ-7Zm">
-                                        <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CategoryCollectionViewCell" id="esD-aQ-7Zm" customClass="CategoryCollectionViewCell" customModule="RecipeApp" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="95" height="125"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="bu7-F8-Zcw">
-                                            <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="95" height="125"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="MtJ-PB-Rgu">
+                                                    <rect key="frame" x="0.0" y="0.0" width="95" height="88"/>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qud-5E-FHA">
+                                                    <rect key="frame" x="8" y="96" width="79" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="7F8-Pd-50U"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="Qud-5E-FHA" secondAttribute="bottom" constant="8" id="J24-9h-fSd"/>
+                                                <constraint firstItem="Qud-5E-FHA" firstAttribute="leading" secondItem="bu7-F8-Zcw" secondAttribute="leading" constant="8" id="bY7-iH-xRF"/>
+                                                <constraint firstItem="MtJ-PB-Rgu" firstAttribute="leading" secondItem="bu7-F8-Zcw" secondAttribute="leading" id="d3M-bz-AT8"/>
+                                                <constraint firstItem="Qud-5E-FHA" firstAttribute="top" secondItem="MtJ-PB-Rgu" secondAttribute="bottom" constant="8" id="eVe-gJ-HlO"/>
+                                                <constraint firstAttribute="trailing" secondItem="Qud-5E-FHA" secondAttribute="trailing" constant="8" id="gio-Ec-nr7"/>
+                                                <constraint firstItem="MtJ-PB-Rgu" firstAttribute="top" secondItem="bu7-F8-Zcw" secondAttribute="top" id="kHH-1S-CeY"/>
+                                                <constraint firstAttribute="trailing" secondItem="MtJ-PB-Rgu" secondAttribute="trailing" id="sLo-8G-Sie"/>
+                                            </constraints>
                                         </collectionViewCellContentView>
+                                        <size key="customSize" width="95" height="125"/>
+                                        <connections>
+                                            <outlet property="categoryImage" destination="MtJ-PB-Rgu" id="uDp-Qv-k4F"/>
+                                            <outlet property="categoryLabel" destination="Qud-5E-FHA" id="07f-Ia-RfI"/>
+                                        </connections>
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
@@ -113,6 +140,10 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Categories" image="list.dash" catalog="system" id="Htw-1H-zR2"/>
+                    <connections>
+                        <outlet property="categoryCollectionView" destination="De1-Ph-j7d" id="NVj-W7-Vya"/>
+                        <segue destination="9EJ-hT-nbY" kind="show" identifier="toCategoriesList" id="DuX-16-gOa"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="y99-Dc-jkS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -383,14 +414,39 @@
             </objects>
             <point key="canvasLocation" x="-790" y="548"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="Vno-j1-60G">
+            <objects>
+                <viewController id="9EJ-hT-nbY" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Gyr-se-5SV">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="toCategoriesList" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cgh-7v-aEP">
+                                <rect key="frame" x="143" y="411" width="126" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="TBd-zp-Jkg"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="htE-ZG-hW2"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1Pk-gY-CfV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-3517" y="1252"/>
+        </scene>
     </scenes>
     <color key="tintColor" red="0.92549019607843142" green="0.72549019607843135" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
     <resources>
         <image name="dice" catalog="system" width="128" height="113"/>
         <image name="flag" catalog="system" width="128" height="121"/>
         <image name="food" width="512" height="512"/>
-        <image name="heart" catalog="system" width="128" height="109"/>
         <image name="heart" width="512" height="512"/>
+        <image name="heart" catalog="system" width="128" height="109"/>
         <image name="list.dash" catalog="system" width="128" height="85"/>
         <image name="magnifyingglass" catalog="system" width="128" height="115"/>
         <image name="sauce" width="512" height="512"/>
