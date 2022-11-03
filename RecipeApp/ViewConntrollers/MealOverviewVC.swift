@@ -15,16 +15,23 @@ class MealOverviewVC: UIViewController {
     @IBOutlet weak var image: UIImageView!
     
     @IBAction func ingredientsButton(_ sender: Any) {
-        performSegue(withIdentifier: "toIngredientsScreen", sender: nil)
+        //performSegue(withIdentifier: "toIngredientsScreen", sender: nil)
+    
+        let vc = storyboard?.instantiateViewController(withIdentifier: "IngridientsVC") as? IngridientsVC
+        vc?.mealArr = mealOverviewDataArr
+        self.navigationController?.pushViewController(vc!, animated: true)
     }
     @IBAction func recipeButton(_ sender: Any) {
-        performSegue(withIdentifier: "toRecipeScreen", sender: nil)
+        //performSegue(withIdentifier: "toRecipeScreen", sender: nil)
+        
+        let vc = storyboard?.instantiateViewController(withIdentifier: "RecipeVC") as? RecipeVC
+        vc?.recipe = mealOverviewDataArr.meals[0].strInstructions
+        self.navigationController?.pushViewController(vc!, animated: true)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //self.image.image = mealOverwiewImg
-        
+
         getMealOverviewData(){
             self.namelabel.text = mealOverviewDataArr.meals[0].strMeal
             self.categoryLabel.text = String("Category - " + mealOverviewDataArr.meals[0].strCategory)
