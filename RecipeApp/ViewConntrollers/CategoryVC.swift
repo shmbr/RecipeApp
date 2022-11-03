@@ -9,7 +9,6 @@ import UIKit
 
 class CategoryVC: UIViewController {
     
-
     @IBOutlet weak var categoryCollectionView: UICollectionView!
     
     override func viewDidLoad() {
@@ -41,11 +40,9 @@ extension CategoryVC: UICollectionViewDelegateFlowLayout{
 
 extension CategoryVC: UICollectionViewDelegate{
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print(categoriesData[indexPath.row].title)
-        performSegue(withIdentifier: "toCategoriesList", sender: nil)
-        
-        //        let vc = storyboard?.instantiateViewController(withIdentifier: "DetailsViewController") as? DetailsViewController
-        //        vc?.row = indexPath.row
-        //        self.navigationController?.pushViewController(vc!, animated: true)
+        let vc = storyboard?.instantiateViewController(withIdentifier: "CategoryOverwieVC") as? CategoryOverwieVC
+        vc?.categoryName = categoriesData[indexPath.row].title
+        vc?.categoryImg = categoriesData[indexPath.row].img
+        self.navigationController?.pushViewController(vc!, animated: true)
     }
 }

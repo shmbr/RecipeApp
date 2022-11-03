@@ -15,7 +15,6 @@ func getJSON(requestURL: URL, completed: @escaping ()->() ){
                 mealsAtCategoryArr = try JSONDecoder().decode(CategoryTableData.self, from: data!)
             }catch{
                 print("api error get category meals !")
-                
             }
             DispatchQueue.main.async {
                 completed()

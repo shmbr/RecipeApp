@@ -19,4 +19,3 @@ struct CategoryData: Codable {
     let strMeal: String
     let strMealThumb: String
 }
-
