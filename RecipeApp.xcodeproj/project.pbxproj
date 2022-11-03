@@ -16,9 +16,12 @@
 		4F154D512911212B001D7BCA /* MealOverviewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F154D502911212B001D7BCA /* MealOverviewData.swift */; };
 		4F154D5329112312001D7BCA /* GetDataByRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F154D5229112312001D7BCA /* GetDataByRequest.swift */; };
 		4F154D5529113602001D7BCA /* GetRandomMealVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F154D5429113602001D7BCA /* GetRandomMealVC.swift */; };
+		4F69CE2C29142BDB00C53C8C /* RecipeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F69CE2B29142BDB00C53C8C /* RecipeVC.swift */; };
+		4F69CE2E29142BE900C53C8C /* IngridientsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F69CE2D29142BE900C53C8C /* IngridientsVC.swift */; };
 		4F8F9A312913EDA500ED3825 /* ButtonsExtentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F8F9A302913EDA500ED3825 /* ButtonsExtentions.swift */; };
 		4F8F9A33291406F900ED3825 /* AreasData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F8F9A32291406F900ED3825 /* AreasData.swift */; };
 		4F8F9A3529140C5000ED3825 /* AreasVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F8F9A3429140C5000ED3825 /* AreasVC.swift */; };
+		4F8F9A3729140FCE00ED3825 /* AreaOverwievVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F8F9A3629140FCE00ED3825 /* AreaOverwievVC.swift */; };
 		4FDE61202912916A006043E0 /* CategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FDE611F2912916A006043E0 /* CategoryCollectionViewCell.swift */; };
 		4FDE612429129295006043E0 /* CategoryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FDE612329129295006043E0 /* CategoryVC.swift */; };
 		4FDE61262912949B006043E0 /* CategoryData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FDE61252912949B006043E0 /* CategoryData.swift */; };
@@ -40,9 +43,12 @@
 		4F154D502911212B001D7BCA /* MealOverviewData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealOverviewData.swift; sourceTree = "<group>"; };
 		4F154D5229112312001D7BCA /* GetDataByRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetDataByRequest.swift; sourceTree = "<group>"; };
 		4F154D5429113602001D7BCA /* GetRandomMealVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetRandomMealVC.swift; sourceTree = "<group>"; };
+		4F69CE2B29142BDB00C53C8C /* RecipeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeVC.swift; sourceTree = "<group>"; };
+		4F69CE2D29142BE900C53C8C /* IngridientsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngridientsVC.swift; sourceTree = "<group>"; };
 		4F8F9A302913EDA500ED3825 /* ButtonsExtentions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonsExtentions.swift; sourceTree = "<group>"; };
 		4F8F9A32291406F900ED3825 /* AreasData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreasData.swift; sourceTree = "<group>"; };
 		4F8F9A3429140C5000ED3825 /* AreasVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreasVC.swift; sourceTree = "<group>"; };
+		4F8F9A3629140FCE00ED3825 /* AreaOverwievVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaOverwievVC.swift; sourceTree = "<group>"; };
 		4FDE611F2912916A006043E0 /* CategoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		4FDE612329129295006043E0 /* CategoryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryVC.swift; sourceTree = "<group>"; };
 		4FDE61252912949B006043E0 /* CategoryData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryData.swift; sourceTree = "<group>"; };
@@ -83,6 +89,8 @@
 			isa = PBXGroup;
 			children = (
 				4F154D4229111DD1001D7BCA /* Main.storyboard */,
+				4F69CE2B29142BDB00C53C8C /* RecipeVC.swift */,
+				4F69CE2D29142BE900C53C8C /* IngridientsVC.swift */,
 				4FDE61282912B8C4006043E0 /* GeneralFiles */,
 				4F8F9A2F2913E64100ED3825 /* InputDataStructures */,
 				4FDE613229131F70006043E0 /* CategoryScreen */,
@@ -107,6 +115,7 @@
 			isa = PBXGroup;
 			children = (
 				4F8F9A3429140C5000ED3825 /* AreasVC.swift */,
+				4F8F9A3629140FCE00ED3825 /* AreaOverwievVC.swift */,
 				4FDE612D2912E4B5006043E0 /* CategoryOverwieVC.swift */,
 				4FDE61292912D51E006043E0 /* FavouriteVC.swift */,
 				4F154D5429113602001D7BCA /* GetRandomMealVC.swift */,
@@ -217,13 +226,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F69CE2C29142BDB00C53C8C /* RecipeVC.swift in Sources */,
 				4F154D4129111DD1001D7BCA /* MealOverviewVC.swift in Sources */,
 				4FDE61302912E557006043E0 /* JSONRequest.swift in Sources */,
 				4F154D5529113602001D7BCA /* GetRandomMealVC.swift in Sources */,
+				4F8F9A3729140FCE00ED3825 /* AreaOverwievVC.swift in Sources */,
 				4FDE612429129295006043E0 /* CategoryVC.swift in Sources */,
 				4F8F9A312913EDA500ED3825 /* ButtonsExtentions.swift in Sources */,
 				4F154D3D29111DD1001D7BCA /* AppDelegate.swift in Sources */,
 				4F8F9A33291406F900ED3825 /* AreasData.swift in Sources */,
+				4F69CE2E29142BE900C53C8C /* IngridientsVC.swift in Sources */,
 				4FDE612C2912DDFB006043E0 /* CategoryTableData.swift in Sources */,
 				4F154D3F29111DD1001D7BCA /* SceneDelegate.swift in Sources */,
 				4FDE612E2912E4B5006043E0 /* CategoryOverwieVC.swift in Sources */,
