@@ -7,11 +7,6 @@
 
 import Foundation
 
-// https://www.themealdb.com/api/json/v1/1/filter.php?c=Seafood
-
-var mealsAtCategoryArr = CategoryTableData(meals: [])
-var areaTableArr = CategoryTableData(meals: [])
-
 struct CategoryTableData: Codable{
     let meals: [CategoryData]
 }
