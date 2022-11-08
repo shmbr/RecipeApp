@@ -199,6 +199,7 @@
                         <outlet property="view2" destination="RaQ-0d-uES" id="djd-Ej-Oe1"/>
                         <outlet property="view3" destination="7q8-QM-KF1" id="tql-XI-2Mo"/>
                         <segue destination="ZpM-gs-f0u" kind="push" id="5Mz-QX-b19"/>
+                        <segue destination="BYZ-38-t0r" kind="push" identifier="toMeal" id="ghX-76-npd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hYm-sw-Okx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -236,7 +237,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BVX-OH-h36" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2968.115942028986" y="1382.8125"/>
+            <point key="canvasLocation" x="-3158" y="1444"/>
         </scene>
         <!--CategoryVC-->
         <scene sceneID="fJV-o8-sIl">
@@ -502,7 +503,7 @@
         <!--Meal OverviewVC-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="MealOverviewVC" customModule="RecipeApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MealOverviewVC" id="BYZ-38-t0r" customClass="MealOverviewVC" customModule="RecipeApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -580,7 +581,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1404.3478260869567" y="1382.8125"/>
+            <point key="canvasLocation" x="-1404" y="1456"/>
         </scene>
         <!--RecipeVC-->
         <scene sceneID="r1y-S0-F4I">
@@ -623,7 +624,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wdf-6Y-c8k" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1752.1739130434785" y="2124.7767857142858"/>
+            <point key="canvasLocation" x="-996" y="2202"/>
         </scene>
         <!--IngridientsVC-->
         <scene sceneID="rAu-J4-0Pe">
@@ -662,7 +663,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="D5H-AB-1EI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1030.4347826086957" y="2124.7767857142858"/>
+            <point key="canvasLocation" x="-1684" y="2202"/>
         </scene>
         <!--Random-->
         <scene sceneID="xhw-NP-gM2">
@@ -796,7 +797,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="u3D-lE-kg9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2162.3188405797105" y="1382.8125"/>
+            <point key="canvasLocation" x="-2162" y="1371"/>
         </scene>
         <!--Ares-->
         <scene sceneID="1Ew-EC-KBx">
@@ -856,6 +857,9 @@
             <point key="canvasLocation" x="-2968.115942028986" y="-5.3571428571428568"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="dHF-x6-LHL"/>
+    </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.92549019607843142" green="0.72549019607843135" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
     <resources>
         <image name="dice" catalog="system" width="128" height="113"/>

@@ -10,7 +10,13 @@ import UIKit
 class GetRandomMealVC: UIViewController {
 
     @IBAction func button(_ sender: Any) {
-        performSegue(withIdentifier: "toMealOverwiev", sender: nil)
+        getMealOverviewData(){
+            //self.performSegue(withIdentifier: "toMealOverwiev", sender: nil)
+            
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "MealOverviewVC") as? MealOverviewVC
+            vc?.display = mealOverviewDataArr
+            self.navigationController?.pushViewController(vc!, animated: true)
+        }
     }
     
     override func viewDidLoad() {

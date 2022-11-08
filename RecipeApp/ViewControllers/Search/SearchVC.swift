@@ -8,19 +8,14 @@
 import UIKit
 
 var searchMealOverviewDataArr = Meals(meals: [])
-
 class SearchVC: UIViewController {
     
-    func activeTF(isActive: Bool, inputView: UIView){
-        if isActive{
-            inputView.layer.borderWidth = 5
-            inputView.layer.borderColor = UIColor(red:236/255, green:185/255, blue:0/255, alpha: 1).cgColor
-        } else{
-            inputView.layer.borderWidth = 0
-            inputView.layer.borderColor = UIColor(red:236/255, green:185/255, blue:0/255, alpha: 0).cgColor
-        }
-    }
+    /// views outlets
+    @IBOutlet weak var view1: UIView!
+    @IBOutlet weak var view2: UIView!
+    @IBOutlet weak var view3: UIView!
     
+    /// active TF section
     @IBAction func begin1(_ sender: Any) {
         activeTF(isActive: true, inputView: view1)
     }
@@ -41,13 +36,6 @@ class SearchVC: UIViewController {
     @IBAction func end3(_ sender: Any) {
         activeTF(isActive: false, inputView: view3)
     }
-    
-
-    
-    
-    @IBOutlet weak var view1: UIView!
-    @IBOutlet weak var view2: UIView!
-    @IBOutlet weak var view3: UIView!
     
     @IBOutlet weak var completeNameTF: UITextField!
     @IBOutlet weak var completeNameButton: UIButton!
@@ -88,9 +76,15 @@ class SearchVC: UIViewController {
         let url = URL( string: urlTemplate)
         
         testRequest(testURl: url){
-            let vc = self.storyboard?.instantiateViewController(withIdentifier: "SearchResultVC") as? SearchResultVC
-            vc?.strInput = searchMealOverviewDataArr.meals[0].strMeal
+//            let vc = self.storyboard?.instantiateViewController(withIdentifier: "SearchResultVC") as? SearchResultVC
+//            vc?.strInput = searchMealOverviewDataArr.meals[0].strMeal
+//            self.navigationController?.pushViewController(vc!, animated: true)
+            
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "MealOverviewVC") as? MealOverviewVC
+            vc?.display = searchMealOverviewDataArr
             self.navigationController?.pushViewController(vc!, animated: true)
+            
+            //self.performSegue(withIdentifier: "toMeal", sender: nil)
         }
         resetForm()
     }
@@ -267,4 +261,14 @@ func thurdTFreq(testURl: URL?, completed: @escaping ()->() ){
         }
     }
     task.resume()
+}
+
+func activeTF(isActive: Bool, inputView: UIView){
+    if isActive{
+        inputView.layer.borderWidth = 5
+        inputView.layer.borderColor = UIColor(red:236/255, green:185/255, blue:0/255, alpha: 1).cgColor
+    } else{
+        inputView.layer.borderWidth = 0
+        inputView.layer.borderColor = UIColor(red:236/255, green:185/255, blue:0/255, alpha: 0).cgColor
+    }
 }
