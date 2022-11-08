@@ -58,7 +58,6 @@
                                         </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="completeNameButton:" destination="aji-XK-7mv" eventType="touchUpInside" id="J4m-4J-qqW"/>
-                                            <action selector="completeNameChanged:" destination="aji-XK-7mv" eventType="touchUpInside" id="cHj-dj-vZh"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -93,6 +92,8 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                         <connections>
+                                            <action selector="begin2:" destination="aji-XK-7mv" eventType="editingDidBegin" id="rqr-22-lHv"/>
+                                            <action selector="end2:" destination="aji-XK-7mv" eventType="editingDidEnd" id="bJC-KO-99D"/>
                                             <action selector="startedAtChanged:" destination="aji-XK-7mv" eventType="editingChanged" id="QqT-kQ-ocT"/>
                                         </connections>
                                     </textField>
@@ -149,6 +150,8 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                         <connections>
+                                            <action selector="begin3:" destination="aji-XK-7mv" eventType="editingDidBegin" id="BrU-ds-Of2"/>
+                                            <action selector="end3:" destination="aji-XK-7mv" eventType="editingDidEnd" id="z47-dM-6kL"/>
                                             <action selector="mainIngredientChanged:" destination="aji-XK-7mv" eventType="editingChanged" id="xoa-TY-vGI"/>
                                         </connections>
                                     </textField>
@@ -173,15 +176,6 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JgX-PC-Ccn">
-                                <rect key="frame" x="246" y="729" width="67" height="31"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" title="Button"/>
-                                <connections>
-                                    <action selector="clear:" destination="aji-XK-7mv" eventType="touchUpInside" id="Vsm-76-NDZ"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="4NN-NV-YYs"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>

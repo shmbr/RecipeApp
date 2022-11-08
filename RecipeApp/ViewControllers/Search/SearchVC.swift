@@ -11,14 +11,38 @@ var searchMealOverviewDataArr = Meals(meals: [])
 
 class SearchVC: UIViewController {
     
+    func activeTF(isActive: Bool, inputView: UIView){
+        if isActive{
+            inputView.layer.borderWidth = 5
+            inputView.layer.borderColor = UIColor(red:236/255, green:185/255, blue:0/255, alpha: 1).cgColor
+        } else{
+            inputView.layer.borderWidth = 0
+            inputView.layer.borderColor = UIColor(red:236/255, green:185/255, blue:0/255, alpha: 0).cgColor
+        }
+    }
+    
     @IBAction func begin1(_ sender: Any) {
-        view1.layer.borderWidth = 5
-        view1.layer.borderColor = UIColor(red:236/255, green:185/255, blue:0/255, alpha: 1).cgColor
+        activeTF(isActive: true, inputView: view1)
     }
     @IBAction func end1(_ sender: Any) {
-        view1.layer.borderWidth = 0
-        view1.layer.borderColor = UIColor(red:236/255, green:185/255, blue:0/255, alpha: 0).cgColor
+        activeTF(isActive: false, inputView: view1)
     }
+    
+    @IBAction func begin2(_ sender: Any) {
+        activeTF(isActive: true, inputView: view2)
+    }
+    @IBAction func end2(_ sender: Any) {
+        activeTF(isActive: false, inputView: view2)
+    }
+    
+    @IBAction func begin3(_ sender: Any) {
+        activeTF(isActive: true, inputView: view3)
+    }
+    @IBAction func end3(_ sender: Any) {
+        activeTF(isActive: false, inputView: view3)
+    }
+    
+
     
     
     @IBOutlet weak var view1: UIView!
@@ -31,9 +55,9 @@ class SearchVC: UIViewController {
     
     @IBAction func completeNameChanged(_ sender: Any) {
         
-//        view1.layer.borderWidth = 5
-//        view1.layer.borderColor = UIColor(red:236/255, green:185/255, blue:0/255, alpha: 1).cgColor
-//
+        view1.layer.borderWidth = 5
+        view1.layer.borderColor = UIColor(red:236/255, green:185/255, blue:0/255, alpha: 1).cgColor
+
         if let name = completeNameTF.text
         {
             if let errorMessage = invalidCompleteName(name)
@@ -64,8 +88,6 @@ class SearchVC: UIViewController {
         let url = URL( string: urlTemplate)
         
         testRequest(testURl: url){
-            //print(searchMealOverviewDataArr.meals[0].strMeal)
-            
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "SearchResultVC") as? SearchResultVC
             vc?.strInput = searchMealOverviewDataArr.meals[0].strMeal
             self.navigationController?.pushViewController(vc!, animated: true)
@@ -127,17 +149,6 @@ class SearchVC: UIViewController {
     @IBOutlet weak var mainIngredientButton: UIButton!
     @IBOutlet weak var mainIngredientErrorLabel: UILabel!
     
-    @IBAction func clear(_ sender: Any) {
-        view1.layer.borderWidth = 0
-        view1.layer.borderColor = UIColor(red:236/255, green:185/255, blue:0/255, alpha: 0).cgColor
-        
-        view2.layer.borderWidth = 0
-        view2.layer.borderColor = UIColor(red:236/255, green:185/255, blue:0/255, alpha: 0).cgColor
-        
-        view3.layer.borderWidth = 0
-        view3.layer.borderColor = UIColor(red:236/255, green:185/255, blue:0/255, alpha: 0).cgColor
-        
-    }
     @IBAction func mainIngredientChanged(_ sender: Any) {
     
         view3.layer.borderWidth = 5
@@ -164,7 +175,7 @@ class SearchVC: UIViewController {
         let urlTemplate = "https://www.themealdb.com/api/json/v1/1/filter.php?i=\(mainIngredientTF.text ?? "")"
         let url = URL( string: urlTemplate)
         
-        getJSON(requestURL: url!){
+        thurdTFreq(testURl: url){
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "SearchResultVC") as? SearchResultVC
             vc?.strInput = mealsAtCategoryArr.meals[0].strMeal
             
@@ -201,6 +212,10 @@ class SearchVC: UIViewController {
         mainIngredientErrorLabel.text = ""
         mainIngredientErrorLabel.isHidden = true
         
+        completeNameTF.text = ""
+        startedAtTF.text = ""
+        mainIngredientTF.text = ""
+        
         view1.layer.borderWidth = 0
         view1.layer.borderColor = UIColor(red:236/255, green:185/255, blue:0/255, alpha: 0).cgColor
 
@@ -222,6 +237,27 @@ func testRequest(testURl: URL?, completed: @escaping ()->() ){
             let newData1 = string.replacingOccurrences(of: "[\r|\n]" , with: "", options: [.regularExpression]).data(using: .utf8)!
             do {
                 searchMealOverviewDataArr = try JSONDecoder().decode(Meals.self, from: newData1)
+                DispatchQueue.main.async {
+                    completed()
+                }
+            } catch (let error) {
+                print("\n---> error: \(error)")
+            }
+        }
+    }
+    task.resume()
+}
+
+func thurdTFreq(testURl: URL?, completed: @escaping ()->() ){
+    guard let url = testURl else{
+        return
+    }
+    let task = URLSession.shared.dataTask(with: url){
+        data, response, error in
+        if let data = data, let string = String(data: data, encoding: .utf8){
+            let newData1 = string.replacingOccurrences(of: "[\r|\n]" , with: "", options: [.regularExpression]).data(using: .utf8)!
+            do {
+                mealsAtCategoryArr = try JSONDecoder().decode(CategoryTableData.self, from: newData1)
                 DispatchQueue.main.async {
                     completed()
                 }
