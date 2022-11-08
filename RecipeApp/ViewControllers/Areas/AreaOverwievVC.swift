@@ -24,7 +24,6 @@ class AreaOverwievVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         table.dataSource = self
         table.delegate = self
         
-        
         getJSONArea(requestURL: URL( string: templateStringURL + areaName)!){
             self.nameLabel.text = self.areaName
             self.flagLabel.text = self.areaFlag

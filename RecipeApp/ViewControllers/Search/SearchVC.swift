@@ -76,15 +76,9 @@ class SearchVC: UIViewController {
         let url = URL( string: urlTemplate)
         
         testRequest(testURl: url){
-//            let vc = self.storyboard?.instantiateViewController(withIdentifier: "SearchResultVC") as? SearchResultVC
-//            vc?.strInput = searchMealOverviewDataArr.meals[0].strMeal
-//            self.navigationController?.pushViewController(vc!, animated: true)
-            
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "MealOverviewVC") as? MealOverviewVC
             vc?.display = searchMealOverviewDataArr
             self.navigationController?.pushViewController(vc!, animated: true)
-            
-            //self.performSegue(withIdentifier: "toMeal", sender: nil)
         }
         resetForm()
     }
@@ -117,13 +111,18 @@ class SearchVC: UIViewController {
     }
     
     @IBAction func startedAtButton(_ sender: Any) {
-        
+        let buff = startedAtTF.text
         let urlTemplate = "https://www.themealdb.com/api/json/v1/1/search.php?f=\(startedAtTF.text ?? "")"
         let url = URL( string: urlTemplate)
         
         testRequest(testURl: url){
+            
+            print(searchMealOverviewDataArr.meals[0].strMeal)
+            
+            
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "SearchResultVC") as? SearchResultVC
-            vc?.strInput = searchMealOverviewDataArr.meals[0].strMeal
+            vc?.strInput = buff!.capitalized
+            vc?.output = searchMealOverviewDataArr
             
             self.navigationController?.pushViewController(vc!, animated: true)
         }
@@ -165,14 +164,15 @@ class SearchVC: UIViewController {
     }
     
     @IBAction func mainIngredientButton(_ sender: Any) {
+        let buffer = mainIngredientTF.text
         
         let urlTemplate = "https://www.themealdb.com/api/json/v1/1/filter.php?i=\(mainIngredientTF.text ?? "")"
         let url = URL( string: urlTemplate)
         
         thurdTFreq(testURl: url){
-            let vc = self.storyboard?.instantiateViewController(withIdentifier: "SearchResultVC") as? SearchResultVC
-            vc?.strInput = mealsAtCategoryArr.meals[0].strMeal
-            
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "SearchIngredientVC") as? SearchIngredientVC
+            vc?.output = mealsAtCategoryArr
+            vc?.mainIngredient = buffer!.lowercased()
             self.navigationController?.pushViewController(vc!, animated: true)
         }
         

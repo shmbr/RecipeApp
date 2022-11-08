@@ -200,6 +200,7 @@
                         <outlet property="view3" destination="7q8-QM-KF1" id="tql-XI-2Mo"/>
                         <segue destination="ZpM-gs-f0u" kind="push" id="5Mz-QX-b19"/>
                         <segue destination="BYZ-38-t0r" kind="push" identifier="toMeal" id="ghX-76-npd"/>
+                        <segue destination="Kdv-pQ-vJm" kind="push" id="YNQ-3F-Umf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hYm-sw-Okx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -220,7 +221,7 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mL6-yd-Oec">
-                                <rect key="frame" x="20" y="88" width="374" height="141"/>
+                                <rect key="frame" x="20" y="88" width="374" height="185"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="50"/>
                                 <nil key="textColor"/>
@@ -233,11 +234,12 @@
                     <navigationItem key="navigationItem" id="B16-Vj-5Pn"/>
                     <connections>
                         <outlet property="label" destination="mL6-yd-Oec" id="Hdh-S3-sva"/>
+                        <outlet property="table" destination="YVp-3p-GV8" id="bfR-8n-FWe"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BVX-OH-h36" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3158" y="1444"/>
+            <point key="canvasLocation" x="-3526.0869565217395" y="1455.8035714285713"/>
         </scene>
         <!--CategoryVC-->
         <scene sceneID="fJV-o8-sIl">
@@ -626,6 +628,40 @@
             </objects>
             <point key="canvasLocation" x="-996" y="2202"/>
         </scene>
+        <!--Search IngredientVC-->
+        <scene sceneID="M5Q-Ce-bT4">
+            <objects>
+                <viewController storyboardIdentifier="SearchIngredientVC" id="Kdv-pQ-vJm" customClass="SearchIngredientVC" customModule="RecipeApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="qwE-tE-KjU">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="umc-aL-zeG">
+                                <rect key="frame" x="20" y="256" width="374" height="579"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B5o-bN-0xO">
+                                <rect key="frame" x="20" y="88" width="374" height="141"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="50"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="3Ys-TH-bRU"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="2rJ-ES-lrA"/>
+                    <connections>
+                        <outlet property="label" destination="B5o-bN-0xO" id="DhF-bf-xAK"/>
+                        <outlet property="table" destination="umc-aL-zeG" id="P19-TX-KcF"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Nww-L2-iu4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2859.4202898550725" y="1455.8035714285713"/>
+        </scene>
         <!--IngridientsVC-->
         <scene sceneID="rAu-J4-0Pe">
             <objects>
@@ -858,7 +894,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="dHF-x6-LHL"/>
+        <segue reference="ghX-76-npd"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.92549019607843142" green="0.72549019607843135" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
     <resources>

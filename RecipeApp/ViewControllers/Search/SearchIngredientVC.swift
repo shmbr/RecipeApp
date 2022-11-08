@@ -1,28 +1,26 @@
 //
-//  SearchResultVC.swift
+//  SearchIngredientVC.swift
 //  RecipeApp
 //
-//  Created by Yu_SHMBR on 04.11.2022.
+//  Created by Yu_SHMBR on 08.11.2022.
 //
 
 import UIKit
 
-class SearchResultVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
-
+class SearchIngredientVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    var output = Meals(meals: [])
-    var strInput = ""
-
+    var output = CategoryTableData(meals: [])
+    var mainIngredient = ""
+    
     @IBOutlet weak var table: UITableView!
     @IBOutlet weak var label: UILabel!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         table.delegate = self
         table.dataSource = self
         
-        label.text = "Meals started at " + strInput
+        label.text = "Meals, where \(mainIngredient) main ingredient"
+
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -34,4 +32,5 @@ class SearchResultVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         cell.textLabel?.text = output.meals[indexPath.row].strMeal
         return cell
     }
+    
 }
