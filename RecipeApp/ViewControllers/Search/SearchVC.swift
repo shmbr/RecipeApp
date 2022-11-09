@@ -115,16 +115,15 @@ class SearchVC: UIViewController {
     // MARK: - Buttons
     
     @IBAction func completeNameButton(_ sender: Any) {
-        print(completeNameTF.text ?? "")
-        
         let tfText = completeNameTF.text ?? ""
         let replaced = tfText.replacingOccurrences(of: " ", with: "%20")
-        print(replaced)
-        
         let urlTemplate = "https://www.themealdb.com/api/json/v1/1/search.php?s=\(replaced)"
         let url = URL( string: urlTemplate)
-        
         testRequest(testURl: url){
+            if err == "error"{
+                self.noDataAlert(title: "Sorry!", msg: "But there isn't such a meal in our database")
+                err = ""
+            }
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "MealOverviewVC") as? MealOverviewVC
             vc?.display = searchMealOverviewDataArr
             self.navigationController?.pushViewController(vc!, animated: true)
@@ -136,16 +135,14 @@ class SearchVC: UIViewController {
         let buff = startedAtTF.text
         let urlTemplate = "https://www.themealdb.com/api/json/v1/1/search.php?f=\(startedAtTF.text ?? "")"
         let url = URL( string: urlTemplate)
-        
         testRequest(testURl: url){
-            
-            print(searchMealOverviewDataArr.meals[0].strMeal)
-            
-            
+            if err == "error"{
+                self.noDataAlert(title: "Sorry!", msg: "But there aren't meals that started at ' ' in our database")
+                err = ""
+            }
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "SearchResultVC") as? SearchResultVC
             vc?.strInput = buff!.capitalized
             vc?.output = searchMealOverviewDataArr
-            
             self.navigationController?.pushViewController(vc!, animated: true)
         }
         resetForm()
@@ -153,19 +150,19 @@ class SearchVC: UIViewController {
     
     @IBAction func mainIngredientButton(_ sender: Any) {
         let buffer = mainIngredientTF.text ?? ""
-        
         let replaced = buffer.replacingOccurrences(of: " ", with: "%20")
-        
         let urlTemplate = "https://www.themealdb.com/api/json/v1/1/filter.php?i=\(replaced)"
         let url = URL( string: urlTemplate)
-        
         thurdTFreq(testURl: url){
+            if err == "error"{
+                self.noDataAlert(title: "Sorry!", msg: "But there isn't such an ingredient in our database")
+                err = ""
+            }
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "SearchIngredientVC") as? SearchIngredientVC
             vc?.output = mealsAtCategoryArr
             vc?.mainIngredient = buffer.lowercased()
             self.navigationController?.pushViewController(vc!, animated: true)
         }
-        
         resetForm()
     }
     
@@ -173,9 +170,9 @@ class SearchVC: UIViewController {
     
     func invalidCompleteName(_ value: String) -> String?
     {
-        if value.count > 20
+        if value.count < 3
         {
-            return "Name must be < 20"
+            return "Min 3 symbols!"
         }
         return nil
     }
@@ -184,16 +181,16 @@ class SearchVC: UIViewController {
     {
         if value.count != 1
         {
-            return "Only one symbol!"
+            return "Input only one symbol!"
         }
         return nil
     }
     
     func invalidMainIngredient(_ value: String) -> String?
     {
-        if value.count > 30
+        if value.count < 3
         {
-            return " < 30 !"
+            return "Min 3 symbols!"
         }
         return nil
     }
@@ -228,14 +225,27 @@ class SearchVC: UIViewController {
         view3.layer.borderColor = UIColor(red:236/255, green:185/255, blue:0/255, alpha: 0).cgColor
     }
     
+    func noDataAlert(title: String, msg: String){
+        // Create new Alert
+        let dialogMessage = UIAlertController(title: title, message: msg, preferredStyle: .alert)
+        
+        // Create OK button with action handler
+        let ok = UIAlertAction(title: "OK", style: .default, handler: { (action) -> Void in
+            print("Ok button tapped")
+         })
+        
+        //Add OK button to a dialog message
+        dialogMessage.addAction(ok)
+        // Present Alert to
+        self.present(dialogMessage, animated: true, completion: nil)
+    }
+    
     // MARK: -
     override func viewDidLoad() {
         super.viewDidLoad()
         resetForm()
     }
 }
-
-
 
 func thurdTFreq(testURl: URL?, completed: @escaping ()->() ){
     guard let url = testURl else{
@@ -252,6 +262,10 @@ func thurdTFreq(testURl: URL?, completed: @escaping ()->() ){
                 }
             } catch (let error) {
                 print("\n---> error: \(error)")
+                err = "error"
+                DispatchQueue.main.async {
+                    completed()
+                }
             }
         }
     }
@@ -267,3 +281,5 @@ func activeTF(isActive: Bool, inputView: UIView){
         inputView.layer.borderColor = UIColor(red:236/255, green:185/255, blue:0/255, alpha: 0).cgColor
     }
 }
+
+

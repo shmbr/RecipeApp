@@ -7,7 +7,9 @@
 
 import Foundation
 
-func testRequest(testURl: URL?, completed: @escaping ()->() ){
+var err = ""
+
+func testRequest(testURl: URL?, completed: @escaping ()->()){
     guard let url = testURl else{
         return
     }
@@ -20,10 +22,14 @@ func testRequest(testURl: URL?, completed: @escaping ()->() ){
                     completed()
                 }
             } catch (let error) {
+                searchMealOverviewDataArr = Meals(meals: [])
                 print("\n---> error: \(error)")
+                err = "error"
+                DispatchQueue.main.async {
+                    completed()
+                }
             }
         }
-        
     }
     task.resume()
 }
