@@ -40,8 +40,21 @@ class AreaOverwievVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: .subtitle, reuseIdentifier: nil)
-        let meal = areaTableArr.meals[indexPath.row]
-        cell.textLabel?.text = meal.strMeal
+        cell.textLabel?.text = areaTableArr.meals[indexPath.row].strMeal
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+
+        let replaced = areaTableArr.meals[indexPath.row].strMeal.replacingOccurrences(of: " ", with: "%20")
+        
+        let urlTemplate = "https://www.themealdb.com/api/json/v1/1/search.php?s=\(replaced)"
+        let url = URL( string: urlTemplate)
+        
+        testRequest(testURl: url){
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "MealOverviewVC") as? MealOverviewVC
+            vc?.display = searchMealOverviewDataArr
+            self.navigationController?.pushViewController(vc!, animated: true)
+        }
     }
 }

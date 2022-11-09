@@ -33,4 +33,18 @@ class SearchIngredientVC: UIViewController, UITableViewDelegate, UITableViewData
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print(output.meals[indexPath.row].strMeal)
+        let replaced = output.meals[indexPath.row].strMeal.replacingOccurrences(of: " ", with: "%20")
+        
+        let urlTemplate = "https://www.themealdb.com/api/json/v1/1/search.php?s=\(replaced)"
+        let url = URL( string: urlTemplate)
+        
+        testRequest(testURl: url){
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "MealOverviewVC") as? MealOverviewVC
+            vc?.display = searchMealOverviewDataArr
+            self.navigationController?.pushViewController(vc!, animated: true)
+        }
+    }
+    
 }
