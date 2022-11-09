@@ -49,10 +49,9 @@ class SearchVC: UIViewController {
         activeTF(isActive: false, inputView: view3)
     }
     
-
+    // MARK: - TextFields Changed
     
     @IBAction func completeNameChanged(_ sender: Any) {
-        
         view1.layer.borderWidth = 5
         view1.layer.borderColor = UIColor(red:236/255, green:185/255, blue:0/255, alpha: 1).cgColor
 
@@ -72,37 +71,7 @@ class SearchVC: UIViewController {
         }
     }
     
-    func invalidCompleteName(_ value: String) -> String?
-    {
-        if value.count > 20
-        {
-            return "Name must be < 20"
-        }
-        return nil
-    }
-    
-    @IBAction func completeNameButton(_ sender: Any) {
-        print(completeNameTF.text ?? "")
-        
-        let tfText = completeNameTF.text ?? ""
-        let replaced = tfText.replacingOccurrences(of: " ", with: "%20")
-        print(replaced)
-        
-        let urlTemplate = "https://www.themealdb.com/api/json/v1/1/search.php?s=\(replaced)"
-        let url = URL( string: urlTemplate)
-        
-        testRequest(testURl: url){
-            let vc = self.storyboard?.instantiateViewController(withIdentifier: "MealOverviewVC") as? MealOverviewVC
-            vc?.display = searchMealOverviewDataArr
-            self.navigationController?.pushViewController(vc!, animated: true)
-        }
-        resetForm()
-    }
-    
-    
-
     @IBAction func startedAtChanged(_ sender: Any) {
-        
         view2.layer.borderWidth = 5
         view2.layer.borderColor = UIColor(red:236/255, green:185/255, blue:0/255, alpha: 1).cgColor
         
@@ -121,6 +90,46 @@ class SearchVC: UIViewController {
                 startedAtButton.isEnabled = true
             }
         }
+    }
+    
+    @IBAction func mainIngredientChanged(_ sender: Any) {
+        view3.layer.borderWidth = 5
+        view3.layer.borderColor = UIColor(red:236/255, green:185/255, blue:0/255, alpha: 1).cgColor
+        
+        if let mainIngredient = mainIngredientTF.text
+        {
+            if let errorMessage = invalidMainIngredient(mainIngredient)
+            {
+                mainIngredientErrorLabel.text = errorMessage
+                mainIngredientErrorLabel.isHidden = false
+                mainIngredientButton.isEnabled = false
+            }
+            else
+            {
+                mainIngredientErrorLabel.isHidden = true
+                mainIngredientButton.isEnabled = true
+            }
+        }
+    }
+    
+    // MARK: - Buttons
+    
+    @IBAction func completeNameButton(_ sender: Any) {
+        print(completeNameTF.text ?? "")
+        
+        let tfText = completeNameTF.text ?? ""
+        let replaced = tfText.replacingOccurrences(of: " ", with: "%20")
+        print(replaced)
+        
+        let urlTemplate = "https://www.themealdb.com/api/json/v1/1/search.php?s=\(replaced)"
+        let url = URL( string: urlTemplate)
+        
+        testRequest(testURl: url){
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "MealOverviewVC") as? MealOverviewVC
+            vc?.display = searchMealOverviewDataArr
+            self.navigationController?.pushViewController(vc!, animated: true)
+        }
+        resetForm()
     }
     
     @IBAction func startedAtButton(_ sender: Any) {
@@ -142,38 +151,6 @@ class SearchVC: UIViewController {
         resetForm()
     }
     
-    func invalidStartedAt(_ value: String) -> String?
-    {
-        if value.count != 1
-        {
-            return "Only one symbol!"
-        }
-        return nil
-    }
-    
-
-    
-    @IBAction func mainIngredientChanged(_ sender: Any) {
-    
-        view3.layer.borderWidth = 5
-        view3.layer.borderColor = UIColor(red:236/255, green:185/255, blue:0/255, alpha: 1).cgColor
-        
-        if let mainIngredient = mainIngredientTF.text
-        {
-            if let errorMessage = invalidMainIngredient(mainIngredient)
-            {
-                mainIngredientErrorLabel.text = errorMessage
-                mainIngredientErrorLabel.isHidden = false
-                mainIngredientButton.isEnabled = false
-            }
-            else
-            {
-                mainIngredientErrorLabel.isHidden = true
-                mainIngredientButton.isEnabled = true
-            }
-        }
-    }
-    
     @IBAction func mainIngredientButton(_ sender: Any) {
         let buffer = mainIngredientTF.text ?? ""
         
@@ -192,6 +169,26 @@ class SearchVC: UIViewController {
         resetForm()
     }
     
+    // MARK: - Validations
+    
+    func invalidCompleteName(_ value: String) -> String?
+    {
+        if value.count > 20
+        {
+            return "Name must be < 20"
+        }
+        return nil
+    }
+    
+    func invalidStartedAt(_ value: String) -> String?
+    {
+        if value.count != 1
+        {
+            return "Only one symbol!"
+        }
+        return nil
+    }
+    
     func invalidMainIngredient(_ value: String) -> String?
     {
         if value.count > 30
@@ -200,11 +197,9 @@ class SearchVC: UIViewController {
         }
         return nil
     }
+
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        resetForm()
-    }
+    // MARK: - Reset
     
     func resetForm(){
         completeNameButton.isEnabled = false
@@ -231,6 +226,12 @@ class SearchVC: UIViewController {
         
         view3.layer.borderWidth = 0
         view3.layer.borderColor = UIColor(red:236/255, green:185/255, blue:0/255, alpha: 0).cgColor
+    }
+    
+    // MARK: -
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        resetForm()
     }
 }
 
