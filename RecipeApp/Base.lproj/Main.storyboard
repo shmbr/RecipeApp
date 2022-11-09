@@ -753,7 +753,6 @@
                         <outlet property="image" destination="xjd-Zg-bQY" id="0Rq-sk-3qE"/>
                         <outlet property="label" destination="Cgh-7v-aEP" id="MFx-uV-Xsp"/>
                         <outlet property="table" destination="y2U-zB-zCg" id="UfX-Vv-U0h"/>
-                        <segue destination="BYZ-38-t0r" kind="push" id="Nur-Rr-LbZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1Pk-gY-CfV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -895,7 +894,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Nur-Rr-LbZ"/>
+        <segue reference="dHF-x6-LHL"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.92549019607843142" green="0.72549019607843135" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
     <resources>

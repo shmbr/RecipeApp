@@ -34,6 +34,35 @@ class IngredientsTableVC: UIViewController, UITableViewDataSource, UITableViewDe
 
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        print(ingredientsListData.meals[indexPath.row].strIngredient)
+//
+//        let replaced = ingredientsListData.meals[indexPath.row].strIngredient.replacingOccurrences(of: " ", with: "%20")
+//
+//        let urlTemplate = "https://www.themealdb.com/api/json/v1/1/search.php?i=\(replaced)"
+//        let url = URL( string: urlTemplate)
+//
+//
+//        testRequest(testURl: url){
+//            let vc = self.storyboard?.instantiateViewController(withIdentifier: "MealOverviewVC") as? MealOverviewVC
+//            vc?.display = searchMealOverviewDataArr
+//            self.navigationController?.pushViewController(vc!, animated: true)
+//        }
+        let buffer = ingredientsListData.meals[indexPath.row].strIngredient
+        
+        let replaced = buffer.replacingOccurrences(of: " ", with: "%20")
+        
+        let urlTemplate = "https://www.themealdb.com/api/json/v1/1/filter.php?i=\(replaced)"
+        let url = URL( string: urlTemplate)
+        
+        thurdTFreq(testURl: url){
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "SearchIngredientVC") as? SearchIngredientVC
+            vc?.output = mealsAtCategoryArr
+            vc?.mainIngredient = buffer.lowercased()
+            self.navigationController?.pushViewController(vc!, animated: true)
+        }
+    }
 }
 
 var imgArr = [[UIImage]]()
