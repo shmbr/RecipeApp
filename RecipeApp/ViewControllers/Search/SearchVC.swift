@@ -15,6 +15,18 @@ class SearchVC: UIViewController {
     @IBOutlet weak var view2: UIView!
     @IBOutlet weak var view3: UIView!
     
+    @IBOutlet weak var completeNameTF: UITextField!
+    @IBOutlet weak var completeNameButton: UIButton!
+    @IBOutlet weak var completeNameErrorLabel: UILabel!
+    
+    @IBOutlet weak var startedAtTF: UITextField!
+    @IBOutlet weak var startedAtButton: UIButton!
+    @IBOutlet weak var startedAtErrorLabel: UILabel!
+    
+    @IBOutlet weak var mainIngredientTF: UITextField!
+    @IBOutlet weak var mainIngredientButton: UIButton!
+    @IBOutlet weak var mainIngredientErrorLabel: UILabel!
+    
     /// active TF section
     @IBAction func begin1(_ sender: Any) {
         activeTF(isActive: true, inputView: view1)
@@ -37,9 +49,7 @@ class SearchVC: UIViewController {
         activeTF(isActive: false, inputView: view3)
     }
     
-    @IBOutlet weak var completeNameTF: UITextField!
-    @IBOutlet weak var completeNameButton: UIButton!
-    @IBOutlet weak var completeNameErrorLabel: UILabel!
+
     
     @IBAction func completeNameChanged(_ sender: Any) {
         
@@ -64,15 +74,21 @@ class SearchVC: UIViewController {
     
     func invalidCompleteName(_ value: String) -> String?
     {
-        if value.count > 10
+        if value.count > 20
         {
-            return "Name must be < 10"
+            return "Name must be < 20"
         }
         return nil
     }
     
     @IBAction func completeNameButton(_ sender: Any) {
-        let urlTemplate = "https://www.themealdb.com/api/json/v1/1/search.php?s=\(completeNameTF.text ?? "")"
+        print(completeNameTF.text ?? "")
+        
+        let tfText = completeNameTF.text ?? ""
+        let replaced = tfText.replacingOccurrences(of: " ", with: "%20")
+        print(replaced)
+        
+        let urlTemplate = "https://www.themealdb.com/api/json/v1/1/search.php?s=\(replaced)"
         let url = URL( string: urlTemplate)
         
         testRequest(testURl: url){
@@ -84,10 +100,7 @@ class SearchVC: UIViewController {
     }
     
     
-    @IBOutlet weak var startedAtTF: UITextField!
-    @IBOutlet weak var startedAtButton: UIButton!
-    @IBOutlet weak var startedAtErrorLabel: UILabel!
-    
+
     @IBAction func startedAtChanged(_ sender: Any) {
         
         view2.layer.borderWidth = 5
@@ -138,9 +151,7 @@ class SearchVC: UIViewController {
         return nil
     }
     
-    @IBOutlet weak var mainIngredientTF: UITextField!
-    @IBOutlet weak var mainIngredientButton: UIButton!
-    @IBOutlet weak var mainIngredientErrorLabel: UILabel!
+
     
     @IBAction func mainIngredientChanged(_ sender: Any) {
     
@@ -164,15 +175,17 @@ class SearchVC: UIViewController {
     }
     
     @IBAction func mainIngredientButton(_ sender: Any) {
-        let buffer = mainIngredientTF.text
+        let buffer = mainIngredientTF.text ?? ""
         
-        let urlTemplate = "https://www.themealdb.com/api/json/v1/1/filter.php?i=\(mainIngredientTF.text ?? "")"
+        let replaced = buffer.replacingOccurrences(of: " ", with: "%20")
+        
+        let urlTemplate = "https://www.themealdb.com/api/json/v1/1/filter.php?i=\(replaced)"
         let url = URL( string: urlTemplate)
         
         thurdTFreq(testURl: url){
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "SearchIngredientVC") as? SearchIngredientVC
             vc?.output = mealsAtCategoryArr
-            vc?.mainIngredient = buffer!.lowercased()
+            vc?.mainIngredient = buffer.lowercased()
             self.navigationController?.pushViewController(vc!, animated: true)
         }
         
@@ -181,9 +194,9 @@ class SearchVC: UIViewController {
     
     func invalidMainIngredient(_ value: String) -> String?
     {
-        if value.count > 10
+        if value.count > 30
         {
-            return " < 10 !"
+            return " < 30 !"
         }
         return nil
     }
@@ -221,26 +234,7 @@ class SearchVC: UIViewController {
     }
 }
 
-func testRequest(testURl: URL?, completed: @escaping ()->() ){
-    guard let url = testURl else{
-        return
-    }
-    let task = URLSession.shared.dataTask(with: url){
-        data, response, error in
-        if let data = data, let string = String(data: data, encoding: .utf8){
-            let newData1 = string.replacingOccurrences(of: "[\r|\n]" , with: "", options: [.regularExpression]).data(using: .utf8)!
-            do {
-                searchMealOverviewDataArr = try JSONDecoder().decode(Meals.self, from: newData1)
-                DispatchQueue.main.async {
-                    completed()
-                }
-            } catch (let error) {
-                print("\n---> error: \(error)")
-            }
-        }
-    }
-    task.resume()
-}
+
 
 func thurdTFreq(testURl: URL?, completed: @escaping ()->() ){
     guard let url = testURl else{
