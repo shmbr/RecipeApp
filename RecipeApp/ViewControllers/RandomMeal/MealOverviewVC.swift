@@ -30,18 +30,6 @@ class MealOverviewVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //        self.namelabel.text = mealOverviewDataArr.meals[0].strMeal
-        //        self.categoryLabel.text = String("Category - " + mealOverviewDataArr.meals[0].strCategory)
-        //        self.areaLabel.text = String("Area - " + mealOverviewDataArr.meals[0].strArea)
-        //
-        //        guard let imgURL = URL(string: mealOverviewDataArr.meals[0].strMealThumb) else {
-        //            fatalError("Broken IMG Link!")
-        //        }
-        //
-        //        requestImgByUrl(input: imgURL){
-        //            self.image.image = mealOverwiewImg
-        //        }
-        
         self.namelabel.text = display.meals[0].strMeal
         self.categoryLabel.text = String("Category - " + display.meals[0].strCategory)
         self.areaLabel.text = String("Area - " + display.meals[0].strArea)
