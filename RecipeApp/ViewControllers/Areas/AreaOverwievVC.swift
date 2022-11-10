@@ -29,9 +29,9 @@ class AreaOverwievVC: UIViewController, UITableViewDelegate, UITableViewDataSour
             self.flagLabel.text = self.areaFlag
             
             self.table.reloadData()
-            self.table.tintColor = UIColor(named: "red")
+            //self.table.tintColor = UIColor(named: "red")
         }
-        table.largeContentTitle = "fmw0ef"
+        //table.largeContentTitle = "fmw0ef"
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -51,9 +51,9 @@ class AreaOverwievVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         let urlTemplate = "https://www.themealdb.com/api/json/v1/1/search.php?s=\(replaced)"
         let url = URL( string: urlTemplate)
         
-        testRequest(testURl: url){
+        getMealRequest(testURl: url){
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "MealOverviewVC") as? MealOverviewVC
-            vc?.display = searchMealOverviewDataArr
+            vc?.mealToDisplay = meal
             self.navigationController?.pushViewController(vc!, animated: true)
         }
     }

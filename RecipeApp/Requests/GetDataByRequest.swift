@@ -10,7 +10,7 @@ import UIKit
 
 let getRandomMealRequestURL = URL( string: "https://www.themealdb.com/api/json/v1/1/random.php")
 
-var mealOverviewDataArr = Meals(meals: [])
+var mealOverviewDataArr = MealStruct(meals: [])
 var mealOverwiewImg = UIImage(named: "food-tray.png")
 
 func getMealOverviewData(completed: @escaping ()->() ){
@@ -22,7 +22,7 @@ func getMealOverviewData(completed: @escaping ()->() ){
         if let data = data, let string = String(data: data, encoding: .utf8){
             let newData1 = string.replacingOccurrences(of: "[\r|\n]" , with: "", options: [.regularExpression]).data(using: .utf8)!
             do {
-                mealOverviewDataArr = try JSONDecoder().decode(Meals.self, from: newData1)
+                mealOverviewDataArr = try JSONDecoder().decode(MealStruct.self, from: newData1)
                 DispatchQueue.main.async {
                     completed()
                 }

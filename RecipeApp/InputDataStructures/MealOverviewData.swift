@@ -7,11 +7,11 @@
 
 import Foundation
 
-struct Meals: Codable {
-    let meals: [Meal]
+struct MealStruct: Codable {
+    let meals: [MealInputJSONData]
 }
 
-struct Meal: Codable {
+struct MealInputJSONData: Codable {
     let strMeal: String
     let strCategory: String
     let strArea: String

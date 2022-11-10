@@ -17,21 +17,21 @@ class AreasVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return areasData.count
+        return areas.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = UITableViewCell(style: .subtitle, reuseIdentifier: nil)
-        cell.textLabel?.text =  areasData[indexPath.row].strFlag + " " + areasData[indexPath.row].strName
+        cell.textLabel?.text =  areas[indexPath.row].strFlag + " " + areas[indexPath.row].strName
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = storyboard?.instantiateViewController(withIdentifier: "AreaOverwievVC") as? AreaOverwievVC
         
-        vc?.areaName = areasData[indexPath.row].strName
-        vc?.areaFlag = areasData[indexPath.row].strFlag
+        vc?.areaName = areas[indexPath.row].strName
+        vc?.areaFlag = areas[indexPath.row].strFlag
         
         self.navigationController?.pushViewController(vc!, animated: true)
     }

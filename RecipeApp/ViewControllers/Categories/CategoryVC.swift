@@ -21,13 +21,13 @@ class CategoryVC: UIViewController {
 
 extension CategoryVC: UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return categoriesData.count
+        return categories.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CategoryCollectionViewCell", for: indexPath) as! CategoryCollectionViewCell
         
-        cell.setup(with: categoriesData[indexPath.row])
+        cell.setup(with: categories[indexPath.row])
         return cell
     }
 }
@@ -41,8 +41,8 @@ extension CategoryVC: UICollectionViewDelegateFlowLayout{
 extension CategoryVC: UICollectionViewDelegate{
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let vc = storyboard?.instantiateViewController(withIdentifier: "CategoryOverwieVC") as? CategoryOverwieVC
-        vc?.categoryName = categoriesData[indexPath.row].title
-        vc?.categoryImg = categoriesData[indexPath.row].img
+        vc?.categoryName = categories[indexPath.row].title
+        vc?.categoryImg = categories[indexPath.row].img
         self.navigationController?.pushViewController(vc!, animated: true)
     }
 }

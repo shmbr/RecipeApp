@@ -11,7 +11,7 @@ class CategoryCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var categoryImage: UIImageView!
     @IBOutlet weak var categoryLabel: UILabel!
     
-    func setup(with inputData: MealsCategory){
+    func setup(with inputData: CategoriesDataStruct){
         categoryImage.image = inputData.img
         categoryLabel.text = inputData.title
     }

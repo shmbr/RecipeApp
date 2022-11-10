@@ -12,7 +12,7 @@ struct AreasDataStruct{
     let strFlag: String
 }
 
-let areasData: [AreasDataStruct] = [
+let areas: [AreasDataStruct] = [
     AreasDataStruct(strName: "American", strFlag: "🇺🇸"),
     AreasDataStruct(strName: "British", strFlag: "🇬🇧"),
     AreasDataStruct(strName: "Canadian", strFlag: "🇨🇦"),

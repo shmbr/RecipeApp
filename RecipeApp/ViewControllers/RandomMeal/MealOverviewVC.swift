@@ -7,37 +7,40 @@
 
 import UIKit
 
+var meal = MealStruct(meals: [])
+
 class MealOverviewVC: UIViewController {
     
-    var display = Meals(meals: [])
+    var mealToDisplay = MealStruct(meals: [])
     
-    @IBOutlet weak var namelabel: UILabel!
+    @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var categoryLabel: UILabel!
     @IBOutlet weak var areaLabel: UILabel!
     @IBOutlet weak var image: UIImageView!
     
     @IBAction func ingredientsButton(_ sender: Any) {
         let vc = storyboard?.instantiateViewController(withIdentifier: "IngridientsVC") as? IngridientsVC
-        vc?.mealArr = display
+        vc?.ingredients = mealToDisplay
         self.navigationController?.pushViewController(vc!, animated: true)
     }
+    
     @IBAction func recipeButton(_ sender: Any) {
         let vc = storyboard?.instantiateViewController(withIdentifier: "RecipeVC") as? RecipeVC
-        vc?.recipe = display.meals[0].strInstructions
+        vc?.recipe = mealToDisplay.meals[0].strInstructions
         self.navigationController?.pushViewController(vc!, animated: true)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.namelabel.text = display.meals[0].strMeal
-        self.categoryLabel.text = String("Category - " + display.meals[0].strCategory)
-        self.areaLabel.text = String("Area - " + display.meals[0].strArea)
+        self.nameLabel.text = mealToDisplay.meals[0].strMeal
+        self.categoryLabel.text = String("Category - " + mealToDisplay.meals[0].strCategory)
+        self.areaLabel.text = String("Area - " + mealToDisplay.meals[0].strArea)
         
-        guard let imgURL = URL(string: display.meals[0].strMealThumb) else {
-            fatalError("Broken IMG Link!")
+        guard let imgURL = URL(string: mealToDisplay.meals[0].strMealThumb) else {
+            fatalError("\n---> error: Broken IMG Link!")
         }
-        
+
         requestImgByUrl(input: imgURL){
             self.image.image = mealOverwiewImg
         }

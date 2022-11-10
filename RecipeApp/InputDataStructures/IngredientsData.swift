@@ -7,10 +7,10 @@
 
 import Foundation
 
-struct IngredientsList: Codable{
-    let meals: [Ingredient]
+struct IngredientStruct: Codable{
+    let meals: [IngredientJSONData]
 }
 
-struct Ingredient: Codable {
+struct IngredientJSONData: Codable {
     let strIngredient: String
 }

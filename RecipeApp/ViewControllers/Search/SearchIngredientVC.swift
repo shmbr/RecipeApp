@@ -9,7 +9,7 @@ import UIKit
 
 class SearchIngredientVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    var output = CategoryTableData(meals: [])
+    var output = CategoryStruct(meals: [])
     var mainIngredient = ""
     
     @IBOutlet weak var table: UITableView!
@@ -40,9 +40,9 @@ class SearchIngredientVC: UIViewController, UITableViewDelegate, UITableViewData
         let urlTemplate = "https://www.themealdb.com/api/json/v1/1/search.php?s=\(replaced)"
         let url = URL( string: urlTemplate)
         
-        testRequest(testURl: url){
+        getMealRequest(testURl: url){
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "MealOverviewVC") as? MealOverviewVC
-            vc?.display = searchMealOverviewDataArr
+            vc?.mealToDisplay = meal
             self.navigationController?.pushViewController(vc!, animated: true)
         }
     }

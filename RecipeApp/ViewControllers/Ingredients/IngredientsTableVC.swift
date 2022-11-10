@@ -43,7 +43,7 @@ class IngredientsTableVC: UIViewController, UITableViewDataSource, UITableViewDe
         let urlTemplate = "https://www.themealdb.com/api/json/v1/1/filter.php?i=\(replaced)"
         let url = URL( string: urlTemplate)
         
-        thurdTFreq(testURl: url){
+        getIngredientsRequest(testURl: url){
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "SearchIngredientVC") as? SearchIngredientVC
             vc?.output = mealsAtCategoryArr
             vc?.mainIngredient = buffer.lowercased()

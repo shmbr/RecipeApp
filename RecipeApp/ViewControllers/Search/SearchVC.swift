@@ -7,7 +7,8 @@
 
 import UIKit
 
-var searchMealOverviewDataArr = Meals(meals: [])
+var err = ""
+
 class SearchVC: UIViewController {
     
     /// views outlets
@@ -119,13 +120,13 @@ class SearchVC: UIViewController {
         let replaced = tfText.replacingOccurrences(of: " ", with: "%20")
         let urlTemplate = "https://www.themealdb.com/api/json/v1/1/search.php?s=\(replaced)"
         let url = URL( string: urlTemplate)
-        testRequest(testURl: url){
+        getMealRequest(testURl: url){
             if err == "error"{
                 self.noDataAlert(title: "Sorry!", msg: "But there isn't such a meal in our database")
                 err = ""
             }
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "MealOverviewVC") as? MealOverviewVC
-            vc?.display = searchMealOverviewDataArr
+            vc?.mealToDisplay = meal
             self.navigationController?.pushViewController(vc!, animated: true)
         }
         resetForm()
@@ -135,14 +136,14 @@ class SearchVC: UIViewController {
         let buff = startedAtTF.text
         let urlTemplate = "https://www.themealdb.com/api/json/v1/1/search.php?f=\(startedAtTF.text ?? "")"
         let url = URL( string: urlTemplate)
-        testRequest(testURl: url){
+        getMealRequest(testURl: url){
             if err == "error"{
                 self.noDataAlert(title: "Sorry!", msg: "But there aren't meals that started at ' ' in our database")
                 err = ""
             }
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "SearchResultVC") as? SearchResultVC
             vc?.strInput = buff!.capitalized
-            vc?.output = searchMealOverviewDataArr
+            vc?.output = meal
             self.navigationController?.pushViewController(vc!, animated: true)
         }
         resetForm()
@@ -153,7 +154,7 @@ class SearchVC: UIViewController {
         let replaced = buffer.replacingOccurrences(of: " ", with: "%20")
         let urlTemplate = "https://www.themealdb.com/api/json/v1/1/filter.php?i=\(replaced)"
         let url = URL( string: urlTemplate)
-        thurdTFreq(testURl: url){
+        getIngredientsRequest(testURl: url){
             if err == "error"{
                 self.noDataAlert(title: "Sorry!", msg: "But there isn't such an ingredient in our database")
                 err = ""
@@ -167,7 +168,6 @@ class SearchVC: UIViewController {
     }
     
     // MARK: - Validations
-    
     func invalidCompleteName(_ value: String) -> String?
     {
         if value.count < 3
@@ -197,7 +197,6 @@ class SearchVC: UIViewController {
 
     
     // MARK: - Reset
-    
     func resetForm(){
         completeNameButton.isEnabled = false
         completeNameErrorLabel.text = ""
@@ -228,12 +227,10 @@ class SearchVC: UIViewController {
     func noDataAlert(title: String, msg: String){
         // Create new Alert
         let dialogMessage = UIAlertController(title: title, message: msg, preferredStyle: .alert)
-        
         // Create OK button with action handler
         let ok = UIAlertAction(title: "OK", style: .default, handler: { (action) -> Void in
             print("Ok button tapped")
          })
-        
         //Add OK button to a dialog message
         dialogMessage.addAction(ok)
         // Present Alert to
@@ -245,31 +242,6 @@ class SearchVC: UIViewController {
         super.viewDidLoad()
         resetForm()
     }
-}
-
-func thurdTFreq(testURl: URL?, completed: @escaping ()->() ){
-    guard let url = testURl else{
-        return
-    }
-    let task = URLSession.shared.dataTask(with: url){
-        data, response, error in
-        if let data = data, let string = String(data: data, encoding: .utf8){
-            let newData1 = string.replacingOccurrences(of: "[\r|\n]" , with: "", options: [.regularExpression]).data(using: .utf8)!
-            do {
-                mealsAtCategoryArr = try JSONDecoder().decode(CategoryTableData.self, from: newData1)
-                DispatchQueue.main.async {
-                    completed()
-                }
-            } catch (let error) {
-                print("\n---> error: \(error)")
-                err = "error"
-                DispatchQueue.main.async {
-                    completed()
-                }
-            }
-        }
-    }
-    task.resume()
 }
 
 func activeTF(isActive: Bool, inputView: UIView){
