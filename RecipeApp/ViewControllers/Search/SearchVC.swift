@@ -253,5 +253,3 @@ func activeTF(isActive: Bool, inputView: UIView){
         inputView.layer.borderColor = UIColor(red:236/255, green:185/255, blue:0/255, alpha: 0).cgColor
     }
 }
-
-
