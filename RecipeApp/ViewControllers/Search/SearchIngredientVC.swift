@@ -19,7 +19,7 @@ class SearchIngredientVC: UIViewController, UITableViewDelegate, UITableViewData
         table.delegate = self
         table.dataSource = self
         
-        label.text = "Meals, where \(mainIngredient) main ingredient"
+        label.text = "Main ingredient: \(mainIngredient)"
 
     }
     
