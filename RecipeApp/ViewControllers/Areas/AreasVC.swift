@@ -21,7 +21,6 @@ class AreasVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         let cell = UITableViewCell(style: .subtitle, reuseIdentifier: nil)
         cell.textLabel?.text =  areas[indexPath.row].strFlag + " " + areas[indexPath.row].strName
         return cell
@@ -29,10 +28,8 @@ class AreasVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = storyboard?.instantiateViewController(withIdentifier: "AreaOverwievVC") as? AreaOverwievVC
-        
         vc?.areaName = areas[indexPath.row].strName
         vc?.areaFlag = areas[indexPath.row].strFlag
-        
         self.navigationController?.pushViewController(vc!, animated: true)
     }
 }

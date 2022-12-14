@@ -22,7 +22,7 @@ class CategoryOverwieVC: UIViewController, UITableViewDelegate, UITableViewDataS
         table.dataSource = self
         table.delegate = self
 
-        getJSON(requestURL: URL( string: templateStringURL + categoryName)!){
+        getIngredientsRequest(testURl: URL( string: templateStringURL + categoryName)!){
             self.table.reloadData()
             self.label.text = self.categoryName
             self.image.image = self.categoryImg

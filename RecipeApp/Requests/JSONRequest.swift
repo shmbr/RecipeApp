@@ -11,22 +11,6 @@ var mealsAtCategoryArr = CategoryStruct(meals: [])
 var areaTableArr = CategoryStruct(meals: [])
 var ingredientsListData = IngredientStruct(meals: [])
 
-func getJSON(requestURL: URL, completed: @escaping ()->() ){
-    
-    URLSession.shared.dataTask(with: requestURL) {data, response, error in
-        if error == nil{
-            do{
-                mealsAtCategoryArr = try JSONDecoder().decode(CategoryStruct.self, from: data!)
-            }catch{
-                print("api error getting category meals!")
-            }
-            DispatchQueue.main.async {
-                completed()
-            }
-        }
-    }.resume()
-}
-
 func getJSONArea(requestURL: URL, completed: @escaping ()->() ){
     
     URLSession.shared.dataTask(with: requestURL) {data, response, error in
@@ -58,8 +42,6 @@ func getJSONIngredientsList(requestURL: URL, completed: @escaping ()->() ){
         }
     }.resume()
 }
-
-
 
 func getMealRequest(testURl: URL?, completed: @escaping ()->()){
     guard let url = testURl else{
@@ -110,4 +92,3 @@ func getIngredientsRequest(testURl: URL?, completed: @escaping ()->() ){
     }
     task.resume()
 }
-

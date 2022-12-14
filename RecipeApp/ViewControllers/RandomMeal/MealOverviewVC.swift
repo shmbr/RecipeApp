@@ -8,6 +8,8 @@
 import UIKit
 
 var meal = MealStruct(meals: [])
+var mealOverviewDataArr = MealStruct(meals: [])
+var mealOverwiewImg = UIImage(named: "food-tray.png")
 
 class MealOverviewVC: UIViewController {
     
@@ -20,7 +22,7 @@ class MealOverviewVC: UIViewController {
     
     @IBAction func ingredientsButton(_ sender: Any) {
         let vc = storyboard?.instantiateViewController(withIdentifier: "IngridientsVC") as? IngridientsVC
-        vc?.ingredients = mealToDisplay
+        vc?.meal = mealToDisplay
         self.navigationController?.pushViewController(vc!, animated: true)
     }
     

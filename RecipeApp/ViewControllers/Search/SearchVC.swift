@@ -11,7 +11,6 @@ var err = ""
 
 class SearchVC: UIViewController {
     
-    /// views outlets
     @IBOutlet weak var view1: UIView!
     @IBOutlet weak var view2: UIView!
     @IBOutlet weak var view3: UIView!
@@ -28,7 +27,6 @@ class SearchVC: UIViewController {
     @IBOutlet weak var mainIngredientButton: UIButton!
     @IBOutlet weak var mainIngredientErrorLabel: UILabel!
     
-    /// active TF section
     @IBAction func begin1(_ sender: Any) {
         activeTF(isActive: true, inputView: view1)
     }
@@ -133,7 +131,7 @@ class SearchVC: UIViewController {
     }
     
     @IBAction func startedAtButton(_ sender: Any) {
-        let buff = startedAtTF.text
+        let tfText = startedAtTF.text
         let urlTemplate = "https://www.themealdb.com/api/json/v1/1/search.php?f=\(startedAtTF.text ?? "")"
         let url = URL( string: urlTemplate)
         getMealRequest(testURl: url){
@@ -142,7 +140,7 @@ class SearchVC: UIViewController {
                 err = ""
             }
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "SearchResultVC") as? SearchResultVC
-            vc?.strInput = buff!.capitalized
+            vc?.userRequestParameter = tfText!.capitalized
             vc?.output = meal
             self.navigationController?.pushViewController(vc!, animated: true)
         }
@@ -150,8 +148,8 @@ class SearchVC: UIViewController {
     }
     
     @IBAction func mainIngredientButton(_ sender: Any) {
-        let buffer = mainIngredientTF.text ?? ""
-        let replaced = buffer.replacingOccurrences(of: " ", with: "%20")
+        let tfText = mainIngredientTF.text ?? ""
+        let replaced = tfText.replacingOccurrences(of: " ", with: "%20")
         let urlTemplate = "https://www.themealdb.com/api/json/v1/1/filter.php?i=\(replaced)"
         let url = URL( string: urlTemplate)
         getIngredientsRequest(testURl: url){
@@ -161,7 +159,7 @@ class SearchVC: UIViewController {
             }
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "SearchIngredientVC") as? SearchIngredientVC
             vc?.output = mealsAtCategoryArr
-            vc?.mainIngredient = buffer.lowercased()
+            vc?.mainIngredient = tfText.lowercased()
             self.navigationController?.pushViewController(vc!, animated: true)
         }
         resetForm()

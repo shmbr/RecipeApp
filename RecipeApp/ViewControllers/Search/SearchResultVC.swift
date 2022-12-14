@@ -11,7 +11,7 @@ class SearchResultVC: UIViewController, UITableViewDelegate, UITableViewDataSour
 
     
     var output = MealStruct(meals: [])
-    var strInput = ""
+    var userRequestParameter = ""
 
     @IBOutlet weak var table: UITableView!
     @IBOutlet weak var label: UILabel!
@@ -22,7 +22,7 @@ class SearchResultVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         table.delegate = self
         table.dataSource = self
         
-        label.text = "Meals started at " + strInput
+        label.text = "Meals started at " + userRequestParameter
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -36,10 +36,10 @@ class SearchResultVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let replaced = output.meals[indexPath.row].strMeal.replacingOccurrences(of: " ", with: "%20")
+        let requestParameter = output.meals[indexPath.row].strMeal.replacingOccurrences(of: " ", with: "%20")
         
-        let urlTemplate = "https://www.themealdb.com/api/json/v1/1/search.php?s=\(replaced)"
-        let url = URL( string: urlTemplate)
+        let urlString = "https://www.themealdb.com/api/json/v1/1/search.php?s=\(requestParameter)"
+        let url = URL( string: urlString)
         
         getMealRequest(testURl: url){
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "MealOverviewVC") as? MealOverviewVC

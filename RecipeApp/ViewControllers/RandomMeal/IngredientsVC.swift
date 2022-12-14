@@ -10,8 +10,13 @@ import UIKit
 class IngridientsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var table: UITableView!
     
-    var ingredients = MealStruct(meals: [])
-    var ingredientsUnwrapped = [[String]]()
+    ///////////////////////////////////////////////////////////////////////////////////
+    //!!!!!
+    var meal = MealStruct(meals: [])
+    //var meal = mealOverviewDataArr
+    ///////////////////////////////////////////////////////////////////////////////////
+    
+    var ingredientsUnwrappedArr = [[String]]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,29 +31,29 @@ class IngridientsVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: .subtitle, reuseIdentifier: nil)
         
-        ingredientsUnwrapped.append([(ingredients.meals[0].strIngredient1 ?? ""), ingredients.meals[0].strMeasure1 ?? ""])
-        ingredientsUnwrapped.append([(ingredients.meals[0].strIngredient2 ?? ""), ingredients.meals[0].strMeasure2 ?? ""])
-        ingredientsUnwrapped.append([(ingredients.meals[0].strIngredient3 ?? ""), ingredients.meals[0].strMeasure3 ?? ""])
-        ingredientsUnwrapped.append([(ingredients.meals[0].strIngredient4 ?? ""), ingredients.meals[0].strMeasure4 ?? ""])
-        ingredientsUnwrapped.append([(ingredients.meals[0].strIngredient5 ?? ""), ingredients.meals[0].strMeasure5 ?? ""])
-        ingredientsUnwrapped.append([(ingredients.meals[0].strIngredient6 ?? ""), ingredients.meals[0].strMeasure6 ?? ""])
-        ingredientsUnwrapped.append([(ingredients.meals[0].strIngredient7 ?? ""), ingredients.meals[0].strMeasure7 ?? ""])
-        ingredientsUnwrapped.append([(ingredients.meals[0].strIngredient8 ?? ""), ingredients.meals[0].strMeasure8 ?? ""])
-        ingredientsUnwrapped.append([(ingredients.meals[0].strIngredient9 ?? ""), ingredients.meals[0].strMeasure9 ?? ""])
-        ingredientsUnwrapped.append([(ingredients.meals[0].strIngredient10 ?? ""), ingredients.meals[0].strMeasure10 ?? ""])
-        ingredientsUnwrapped.append([(ingredients.meals[0].strIngredient11 ?? ""), ingredients.meals[0].strMeasure11 ?? ""])
-        ingredientsUnwrapped.append([(ingredients.meals[0].strIngredient12 ?? ""), ingredients.meals[0].strMeasure12 ?? ""])
-        ingredientsUnwrapped.append([(ingredients.meals[0].strIngredient13 ?? ""), ingredients.meals[0].strMeasure13 ?? ""])
-        ingredientsUnwrapped.append([(ingredients.meals[0].strIngredient14 ?? ""), ingredients.meals[0].strMeasure14 ?? ""])
-        ingredientsUnwrapped.append([(ingredients.meals[0].strIngredient15 ?? ""), ingredients.meals[0].strMeasure15 ?? ""])
-        ingredientsUnwrapped.append([(ingredients.meals[0].strIngredient16 ?? ""), ingredients.meals[0].strMeasure16 ?? ""])
-        ingredientsUnwrapped.append([(ingredients.meals[0].strIngredient17 ?? ""), ingredients.meals[0].strMeasure17 ?? ""])
-        ingredientsUnwrapped.append([(ingredients.meals[0].strIngredient18 ?? ""), ingredients.meals[0].strMeasure18 ?? ""])
-        ingredientsUnwrapped.append([(ingredients.meals[0].strIngredient19 ?? ""), ingredients.meals[0].strMeasure19 ?? ""])
-        ingredientsUnwrapped.append([(ingredients.meals[0].strIngredient20 ?? ""), ingredients.meals[0].strMeasure20 ?? ""])
+        ingredientsUnwrappedArr.append([(meal.meals[0].strIngredient1 ?? ""), meal.meals[0].strMeasure1 ?? ""])
+        ingredientsUnwrappedArr.append([(meal.meals[0].strIngredient2 ?? ""), meal.meals[0].strMeasure2 ?? ""])
+        ingredientsUnwrappedArr.append([(meal.meals[0].strIngredient3 ?? ""), meal.meals[0].strMeasure3 ?? ""])
+        ingredientsUnwrappedArr.append([(meal.meals[0].strIngredient4 ?? ""), meal.meals[0].strMeasure4 ?? ""])
+        ingredientsUnwrappedArr.append([(meal.meals[0].strIngredient5 ?? ""), meal.meals[0].strMeasure5 ?? ""])
+        ingredientsUnwrappedArr.append([(meal.meals[0].strIngredient6 ?? ""), meal.meals[0].strMeasure6 ?? ""])
+        ingredientsUnwrappedArr.append([(meal.meals[0].strIngredient7 ?? ""), meal.meals[0].strMeasure7 ?? ""])
+        ingredientsUnwrappedArr.append([(meal.meals[0].strIngredient8 ?? ""), meal.meals[0].strMeasure8 ?? ""])
+        ingredientsUnwrappedArr.append([(meal.meals[0].strIngredient9 ?? ""), meal.meals[0].strMeasure9 ?? ""])
+        ingredientsUnwrappedArr.append([(meal.meals[0].strIngredient10 ?? ""), meal.meals[0].strMeasure10 ?? ""])
+        ingredientsUnwrappedArr.append([(meal.meals[0].strIngredient11 ?? ""), meal.meals[0].strMeasure11 ?? ""])
+        ingredientsUnwrappedArr.append([(meal.meals[0].strIngredient12 ?? ""), meal.meals[0].strMeasure12 ?? ""])
+        ingredientsUnwrappedArr.append([(meal.meals[0].strIngredient13 ?? ""), meal.meals[0].strMeasure13 ?? ""])
+        ingredientsUnwrappedArr.append([(meal.meals[0].strIngredient14 ?? ""), meal.meals[0].strMeasure14 ?? ""])
+        ingredientsUnwrappedArr.append([(meal.meals[0].strIngredient15 ?? ""), meal.meals[0].strMeasure15 ?? ""])
+        ingredientsUnwrappedArr.append([(meal.meals[0].strIngredient16 ?? ""), meal.meals[0].strMeasure16 ?? ""])
+        ingredientsUnwrappedArr.append([(meal.meals[0].strIngredient17 ?? ""), meal.meals[0].strMeasure17 ?? ""])
+        ingredientsUnwrappedArr.append([(meal.meals[0].strIngredient18 ?? ""), meal.meals[0].strMeasure18 ?? ""])
+        ingredientsUnwrappedArr.append([(meal.meals[0].strIngredient19 ?? ""), meal.meals[0].strMeasure19 ?? ""])
+        ingredientsUnwrappedArr.append([(meal.meals[0].strIngredient20 ?? ""), meal.meals[0].strMeasure20 ?? ""])
         
-        cell.textLabel?.text = ingredientsUnwrapped[indexPath.row][0]
-        cell.detailTextLabel?.text = ingredientsUnwrapped[indexPath.row][1]
+        cell.textLabel?.text = ingredientsUnwrappedArr[indexPath.row][0]
+        cell.detailTextLabel?.text = ingredientsUnwrappedArr[indexPath.row][1]
         return cell
     }
 }

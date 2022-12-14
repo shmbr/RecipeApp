@@ -6,14 +6,9 @@
 //
 
 import Foundation
-import UIKit
-
-let getRandomMealRequestURL = URL( string: "https://www.themealdb.com/api/json/v1/1/random.php")
-
-var mealOverviewDataArr = MealStruct(meals: [])
-var mealOverwiewImg = UIImage(named: "food-tray.png")
 
 func getMealOverviewData(completed: @escaping ()->() ){
+    let getRandomMealRequestURL = URL( string: "https://www.themealdb.com/api/json/v1/1/random.php")
     guard let url = getRandomMealRequestURL else{
         return
     }
@@ -29,20 +24,6 @@ func getMealOverviewData(completed: @escaping ()->() ){
             } catch (let error) {
                 print("\n---> error: \(error)")
             }
-        }
-    }
-    task.resume()
-}
-
-func requestImgByUrl(input: URL,completed: @escaping ()->() ){
-    let session = URLSession(configuration: .default)
-    let task = session.dataTask(with: input){ (data, response, error )in
-        guard let data = data, error == nil else {
-            return
-        }
-        mealOverwiewImg = UIImage(data: data)
-        DispatchQueue.main.async{
-            completed()
         }
     }
     task.resume()

@@ -27,11 +27,8 @@ class AreaOverwievVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         getJSONArea(requestURL: URL( string: templateStringURL + areaName)!){
             self.nameLabel.text = self.areaName
             self.flagLabel.text = self.areaFlag
-            
             self.table.reloadData()
-            //self.table.tintColor = UIColor(named: "red")
         }
-        //table.largeContentTitle = "fmw0ef"
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -45,12 +42,9 @@ class AreaOverwievVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-
-        let replaced = areaTableArr.meals[indexPath.row].strMeal.replacingOccurrences(of: " ", with: "%20")
-        
-        let urlTemplate = "https://www.themealdb.com/api/json/v1/1/search.php?s=\(replaced)"
-        let url = URL( string: urlTemplate)
-        
+        let requestParameter = areaTableArr.meals[indexPath.row].strMeal.replacingOccurrences(of: " ", with: "%20")
+        let urlString = "https://www.themealdb.com/api/json/v1/1/search.php?s=\(requestParameter)"
+        let url = URL( string: urlString)
         getMealRequest(testURl: url){
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "MealOverviewVC") as? MealOverviewVC
             vc?.mealToDisplay = meal
