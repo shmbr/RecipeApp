@@ -1,5 +1,5 @@
 //
-//  CategoryTableData.swift
+//  CategoriesData.swift
 //  RecipeApp
 //
 //  Created by Yu_SHMBR on 02.11.2022.

@@ -10,9 +10,9 @@ import UIKit
 class GetRandomMealVC: UIViewController {
 
     @IBAction func button(_ sender: Any) {
-        getMealOverviewData(){
+        getMealRequest(testURl: URL( string: "https://www.themealdb.com/api/json/v1/1/random.php")){
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "MealOverviewVC") as? MealOverviewVC
-            vc?.mealToDisplay = mealOverviewDataArr
+            vc?.mealToDisplay = meal
             self.navigationController?.pushViewController(vc!, animated: true)
         }
     }

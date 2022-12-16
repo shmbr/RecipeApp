@@ -152,13 +152,13 @@ class SearchVC: UIViewController {
         let replaced = tfText.replacingOccurrences(of: " ", with: "%20")
         let urlTemplate = "https://www.themealdb.com/api/json/v1/1/filter.php?i=\(replaced)"
         let url = URL( string: urlTemplate)
-        getIngredientsRequest(testURl: url){
+        getFilteredDataRequest(testURl: url){
             if err == "error"{
                 self.noDataAlert(title: "Sorry!", msg: "But there isn't such an ingredient in our database")
                 err = ""
             }
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "SearchIngredientVC") as? SearchIngredientVC
-            vc?.output = mealsAtCategoryArr
+            vc?.output = filteredDataArr
             vc?.mainIngredient = tfText.lowercased()
             self.navigationController?.pushViewController(vc!, animated: true)
         }

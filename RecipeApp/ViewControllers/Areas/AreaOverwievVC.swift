@@ -24,7 +24,7 @@ class AreaOverwievVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         table.dataSource = self
         table.delegate = self
         
-        getJSONArea(requestURL: URL( string: templateStringURL + areaName)!){
+        getFilteredDataRequest(testURl: URL( string: templateStringURL + areaName)!){
             self.nameLabel.text = self.areaName
             self.flagLabel.text = self.areaFlag
             self.table.reloadData()
@@ -32,17 +32,17 @@ class AreaOverwievVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return areaTableArr.meals.count
+        return filteredDataArr.meals.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: .subtitle, reuseIdentifier: nil)
-        cell.textLabel?.text = areaTableArr.meals[indexPath.row].strMeal
+        cell.textLabel?.text = filteredDataArr.meals[indexPath.row].strMeal
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let requestParameter = areaTableArr.meals[indexPath.row].strMeal.replacingOccurrences(of: " ", with: "%20")
+        let requestParameter = filteredDataArr.meals[indexPath.row].strMeal.replacingOccurrences(of: " ", with: "%20")
         let urlString = "https://www.themealdb.com/api/json/v1/1/search.php?s=\(requestParameter)"
         let url = URL( string: urlString)
         getMealRequest(testURl: url){

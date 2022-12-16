@@ -19,7 +19,7 @@ class IngredientsTableVC: UIViewController, UITableViewDataSource, UITableViewDe
         
         let ingredientsListURL = URL(string: "https://www.themealdb.com/api/json/v1/1/list.php?i=list")
         
-        getJSONIngredientsList(requestURL: ingredientsListURL!){
+        getIngredientsListRequest(requestURL: ingredientsListURL!){
             self.table.reloadData()
         }
 
@@ -31,7 +31,6 @@ class IngredientsTableVC: UIViewController, UITableViewDataSource, UITableViewDe
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: .subtitle, reuseIdentifier: nil)
         cell.textLabel?.text = ingredientsListData.meals[indexPath.row].strIngredient
-
         return cell
     }
     
@@ -43,9 +42,9 @@ class IngredientsTableVC: UIViewController, UITableViewDataSource, UITableViewDe
         let urlTemplate = "https://www.themealdb.com/api/json/v1/1/filter.php?i=\(replaced)"
         let url = URL( string: urlTemplate)
         
-        getIngredientsRequest(testURl: url){
+        getFilteredDataRequest(testURl: url){
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "SearchIngredientVC") as? SearchIngredientVC
-            vc?.output = mealsAtCategoryArr
+            vc?.output = filteredDataArr
             vc?.mainIngredient = buffer.lowercased()
             self.navigationController?.pushViewController(vc!, animated: true)
         }

@@ -1,5 +1,5 @@
 //
-//  IngredientsListData.swift
+//  IngredientsData.swift
 //  RecipeApp
 //
 //  Created by Yu_SHMBR on 04.11.2022.

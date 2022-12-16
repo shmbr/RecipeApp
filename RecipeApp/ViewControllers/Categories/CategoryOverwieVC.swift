@@ -22,7 +22,7 @@ class CategoryOverwieVC: UIViewController, UITableViewDelegate, UITableViewDataS
         table.dataSource = self
         table.delegate = self
 
-        getIngredientsRequest(testURl: URL( string: templateStringURL + categoryName)!){
+        getFilteredDataRequest(testURl: URL( string: templateStringURL + categoryName)!){
             self.table.reloadData()
             self.label.text = self.categoryName
             self.image.image = self.categoryImg
@@ -30,17 +30,17 @@ class CategoryOverwieVC: UIViewController, UITableViewDelegate, UITableViewDataS
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return mealsAtCategoryArr.meals.count
+        return filteredDataArr.meals.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: .subtitle, reuseIdentifier: nil)
-        cell.textLabel?.text = mealsAtCategoryArr.meals[indexPath.row].strMeal
+        cell.textLabel?.text = filteredDataArr.meals[indexPath.row].strMeal
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let replaced = mealsAtCategoryArr.meals[indexPath.row].strMeal.replacingOccurrences(of: " ", with: "%20")
+        let replaced = filteredDataArr.meals[indexPath.row].strMeal.replacingOccurrences(of: " ", with: "%20")
         let urlTemplate = "https://www.themealdb.com/api/json/v1/1/search.php?s=\(replaced)"
         let url = URL( string: urlTemplate)
         

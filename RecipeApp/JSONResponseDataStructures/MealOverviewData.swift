@@ -1,5 +1,5 @@
 //
-//  MealPageData.swift
+//  MealOverviewData.swift
 //  RecipeApp
 //
 //  Created by Yu_SHMBR on 01.11.2022.

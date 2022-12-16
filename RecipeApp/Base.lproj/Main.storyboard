@@ -282,8 +282,8 @@
                         <outlet property="view1" destination="nKS-9z-3u5" id="gMv-Zs-VMe"/>
                         <outlet property="view2" destination="RaQ-0d-uES" id="djd-Ej-Oe1"/>
                         <outlet property="view3" destination="7q8-QM-KF1" id="tql-XI-2Mo"/>
-                        <segue destination="ZpM-gs-f0u" kind="push" id="5Mz-QX-b19"/>
-                        <segue destination="Kdv-pQ-vJm" kind="push" id="YNQ-3F-Umf"/>
+                        <segue destination="ZpM-gs-f0u" kind="show" identifier="toSearchResult1" id="5Mz-QX-b19"/>
+                        <segue destination="Kdv-pQ-vJm" kind="show" identifier="toSearchResult2" id="YNQ-3F-Umf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hYm-sw-Okx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -411,7 +411,7 @@
                     <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="g6W-JZ-bHv"/>
                     <connections>
                         <outlet property="categoryCollectionView" destination="De1-Ph-j7d" id="NVj-W7-Vya"/>
-                        <segue destination="9EJ-hT-nbY" kind="push" identifier="toCategoriesList" id="DuX-16-gOa"/>
+                        <segue destination="9EJ-hT-nbY" kind="show" identifier="toCategoriesList" id="DuX-16-gOa"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="y99-Dc-jkS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -478,7 +478,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="2DH-t2-sOr"/>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="push" identifier="toMealOverwiev" id="dHF-x6-LHL"/>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="toMealOverwiev" id="dHF-x6-LHL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Apj-xG-Yvu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -522,7 +522,7 @@
                     <navigationItem key="navigationItem" id="Ohg-os-QEE"/>
                     <connections>
                         <outlet property="table" destination="e8Y-2b-pOQ" id="74P-5a-ZOd"/>
-                        <segue destination="1Jz-GP-4yR" kind="push" id="PGu-mF-uwp"/>
+                        <segue destination="1Jz-GP-4yR" kind="show" identifier="toAreasOverview" id="PGu-mF-uwp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DJ5-zd-BfW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

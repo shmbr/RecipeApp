@@ -1,28 +1,30 @@
 //
-//  GetDataByRequest.swift
+//  GetMeal.swift
 //  RecipeApp
 //
-//  Created by Yu_SHMBR on 01.11.2022.
+//  Created by Yu_SHMBR on 15.12.2022.
 //
 
 import Foundation
 
-func getMealOverviewData(completed: @escaping ()->() ){
-    let getRandomMealRequestURL = URL( string: "https://www.themealdb.com/api/json/v1/1/random.php")
-    guard let url = getRandomMealRequestURL else{
+var meal = MealStruct(meals: [])
+
+func getMealRequest(testURl: URL?, completed: @escaping ()->()){
+    guard let url = testURl else{
         return
     }
-    let task = URLSession.shared.dataTask(with: url){
-        data, response, error in
+    let task = URLSession.shared.dataTask(with: url){ data, response, error in
         if let data = data, let string = String(data: data, encoding: .utf8){
             let newData1 = string.replacingOccurrences(of: "[\r|\n]" , with: "", options: [.regularExpression]).data(using: .utf8)!
             do {
-                mealOverviewDataArr = try JSONDecoder().decode(MealStruct.self, from: newData1)
+                meal = try JSONDecoder().decode(MealStruct.self, from: newData1)
                 DispatchQueue.main.async {
                     completed()
                 }
             } catch (let error) {
+                meal = MealStruct(meals: [])
                 print("\n---> error: \(error)")
+                err = "error"
             }
         }
     }

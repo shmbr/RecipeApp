@@ -7,10 +7,6 @@
 
 import UIKit
 
-var meal = MealStruct(meals: [])
-var mealOverviewDataArr = MealStruct(meals: [])
-var mealOverwiewImg = UIImage(named: "food-tray.png")
-
 class MealOverviewVC: UIViewController {
     
     var mealToDisplay = MealStruct(meals: [])
